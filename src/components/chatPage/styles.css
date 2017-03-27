@@ -1,0 +1,4 @@
+.chat-page {
+  background-color: #ffffff;
+  height: calc(100vh - 48px);
+}

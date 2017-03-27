@@ -1,0 +1,57 @@
+{
+  "env": {
+    "es6": true,
+    "browser": true,
+    "node": true,
+    "amd": false,
+    "mocha": true,
+    "jasmine": false,
+    "phantomjs": false,
+    "jquery": false,
+    "prototypejs": false,
+    "shelljs": false
+  },
+  "plugins": [
+    "css-modules"
+  ],
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "arrowFunctions": true,
+      "binaryLiterals": true,
+      "blockBindings": true,
+      "classes": true,
+      "defaultParams": true,
+      "destructuring": true,
+      "forOf": true,
+      "generators": true,
+      "modules": true,
+      "objectLiteralComputedProperties": true,
+      "objectLiteralDuplicateProperties": false,
+      "objectLiteralShorthandMethods": true,
+      "objectLiteralShorthandProperties": true,
+      "octalLiterals": false,
+      "regexUFlag": false,
+      "regexYFlag": false,
+      "restParams": true,
+      "spread": true,
+      "templateStrings": true,
+      "unicodeCodePointEscapes": false
+    }
+  },
+  "extends": [
+    "airbnb-base",
+    "plugin:css-modules/recommended"
+  ],
+  "rules": {
+    "import/no-extraneous-dependencies": 0,
+    "arrow-parens": [2, "as-needed", { "requireForBlockBody": true }],
+    "comma-dangle": 0,
+    "jsx-quotes": [1, "prefer-single"],
+    "no-plusplus": 0,
+    "no-underscore-dangle": 0,
+    "no-new": 0,
+    "class-methods-use-this": 0,
+    "global-require": 0
+  }
+}
