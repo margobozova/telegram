@@ -8,6 +8,8 @@ class Layout {
     this.container = container;
     this.container.classList.add(styles.app);
     this.render();
+
+    return this.container;
   }
 
   render() {

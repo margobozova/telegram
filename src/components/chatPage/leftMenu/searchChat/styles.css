@@ -1,0 +1,8 @@
+.search-chat {
+  width:303px;
+  height:58px;
+  position:absolute;
+  box-sizing: border-box;
+  background-color: white;
+  z-index: 5;
+}

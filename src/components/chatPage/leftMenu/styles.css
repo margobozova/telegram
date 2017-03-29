@@ -1,0 +1,7 @@
+.left-menu {
+  position: relative;
+  float: left;
+  box-sizing: border-box;
+  width:30%;
+  height:100%;
+}
