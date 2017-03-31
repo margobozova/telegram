@@ -1,26 +1,28 @@
 import styles from './styles.css';
 
 class ChatItem {
-  constructor(cover, name, message, time) {
+  constructor() {
+    this.cover = '/images/kabaii.jpg';
+    this.name = 'Юрий Кабай';
+    this.message = 'Прііівєєєт';
+    this.time = '12:30 PM';
+
     this.element = document.createElement('div');
     this.element.classList.add(styles['chat-item']);
-    this.cover = cover;
-    this.name = name;
-    this.message = message;
-    this.time = time;
+
     this.render();
 
     return this.element;
   }
   render() {
-    this.element.innerHTML = `<div class="content">
-      <div>
-        <img class="cover" src="${this.cover}">
+    this.element.innerHTML = `
+      <div class="${styles.content}">
+        <img class="${styles.cover}" src="${this.cover}"/>
+          <span class="${styles.name}">${this.name}</span>
+          <span class="${styles.message}">${this.message}</span>
+        <span class="${styles.time}">${this.time}</span>
       </div>
-      <div class="name">${this.name}</div>
-      <div class="time">${this.time}</div>
-      <div class="message">${this.message}</div>
-    </div>`;
+    `;
   }
 }
 

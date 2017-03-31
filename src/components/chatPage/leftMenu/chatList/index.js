@@ -10,7 +10,7 @@ class ChatList {
     return this.element;
   }
   render() {
-    this.element.appendChild(new ChatItem('cover', 'name', 'message', 'time'));
+    this.element.appendChild(new ChatItem());
   }
 }
 

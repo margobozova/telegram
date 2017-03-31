@@ -2,4 +2,5 @@
   position: relative;
   overflow: auto;
   padding-top: 58px;
+  height: calc(100vh-106px);
 }
