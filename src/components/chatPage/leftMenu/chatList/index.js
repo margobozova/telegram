@@ -10,7 +10,9 @@ class ChatList {
     return this.element;
   }
   render() {
-    this.element.appendChild(new ChatItem());
+    for (let i = 1; i <= 15; i++) {
+      this.element.appendChild(new ChatItem());
+    }
   }
 }
 

@@ -16,12 +16,12 @@ class ChatItem {
   }
   render() {
     this.element.innerHTML = `
-      <div class="${styles.content}">
+      <a href="" class="${styles.content}">
         <img class="${styles.cover}" src="${this.cover}"/>
           <span class="${styles.name}">${this.name}</span>
           <span class="${styles.message}">${this.message}</span>
         <span class="${styles.time}">${this.time}</span>
-      </div>
+      </a>
     `;
   }
 }
