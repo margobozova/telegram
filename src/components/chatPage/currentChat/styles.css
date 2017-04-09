@@ -1,0 +1,110 @@
+.current-chat-page {
+  width: 697px;
+  height:100%;
+  position: relative;
+  float: right;
+}
+  .message-page {
+    height: calc(100vh - 270px);
+    width:100%;
+    overflow: auto;
+  }
+    .message-item {
+      width:100%;
+      position: relative;
+      padding:8px;
+    }
+      .message-body {
+        width: 380px;
+        min-height: 42px;
+        position: relative;
+        left:50%;
+        transform: translate(-50%,0);
+      }
+        .user-photo {
+          position: absolute;
+          left:-62px;
+          width:42px;
+          height:42px;
+          border-radius:50%;
+          display: block;
+          background-image: url('/images/kabaii.jpg');
+          background-size: cover;
+          background-position: center;
+        }
+        .user-name {
+          position: absolute;
+          top: 3px;
+          font-family: sans-serif;
+          font-size: 12px;
+          color: #3a6d99;
+          font-weight: 700;
+        }
+        .user-message {
+          position: absolute;
+          bottom: 3px;
+          font-family: sans-serif;
+          font-size: 12px;
+          color: #000000;
+        }
+        .message-time {
+          color: #adadad;
+          font-family: sans-serif;
+          font-size: 11px;
+          position: absolute;
+          right: -60px;
+        }
+  .send-pannel {
+    height: 170px;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+  }
+    .send-form {
+      height: 52px;
+      width: 412px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      border-bottom: 2px solid gainsboro;
+    }
+      .owner-photo {
+        height: 52px;
+        width: 52px;
+        position: absolute;
+        background-color: #3a6d99;
+        border-radius: 50%;
+        left: -72px;
+      }
+      textarea[name="text-message"] {
+        height: 50px;
+        width: 85%;
+        border: none;
+        resize: none;
+      }
+      textarea[placeholder] {
+        font-size: 12px;
+      }
+      .button-send {
+        border: none;
+        background-color: transparent;
+        font-size: 14px;
+        font-weight: 700;
+        font-family: sans-serif;
+        color: #499dd9;
+        position: absolute;
+        top: 5px;
+        right: 5px;
+      }
+      .sender-photo {
+        height: 52px;
+        width: 52px;
+        position: absolute;
+        background-image: url('/images/kabaii.jpg');
+        background-size: cover;
+        background-position: center;
+        border-radius: 50%;
+        right: -72px;
+        top:0;
+      }
