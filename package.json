@@ -5,12 +5,15 @@
   "main": "./src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "cross-env NODE_ENV=development webpack-dev-server"
+    "start:client": "cross-env NODE_ENV=development webpack-dev-server",
+    "start:server": "cross-env NODE_ENV=development babel-node server --presets es2015,stage-2",
+    "start": "npm run start:client; npm run start:server"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "autoprefixer": "^6.7.7",
+    "babel-cli": "^6.24.0",
     "babel-core": "^6.24.0",
     "babel-eslint": "^7.2.0",
     "babel-loader": "^6.4.1",
@@ -36,6 +39,11 @@
   },
   "dependencies": {
     "babel-runtime": "^6.23.0",
-    "normalize.css": "^5.0.0"
+    "body-parser": "^1.17.1",
+    "cors": "^2.8.3",
+    "express": "^4.15.2",
+    "mongoose": "^4.9.3",
+    "normalize.css": "^5.0.0",
+    "socket.io": "^1.7.3"
   }
 }
