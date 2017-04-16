@@ -1,0 +1,11 @@
+.sender-photo {
+  height: 52px;
+  width: 52px;
+  position: absolute;
+  background-image: url('/images/kabaii.jpg');
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
+  right: -72px;
+  top: 0;
+}

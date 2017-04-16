@@ -1,36 +1,30 @@
 import styles from './styles.css';
+import MessageBody from './messageBody';
+import SendForm from './sendForm';
 
 class CurrentChat {
   constructor() {
     this.element = document.createElement('div');
     this.element.classList.add(styles['current-chat-page']);
+
+    this.messagePageWrap = document.createElement('div');
+    this.messagePageWrap.classList.add(styles['message-page']);
+
+    this.messageItemWrap = document.createElement('div');
+    this.messageItemWrap.classList.add(styles['message-item']);
+
+    this.sendPanelWrap = document.createElement('div');
+    this.sendPanelWrap.classList.add(styles['send-panel']);
     this.render();
 
     return this.element;
   }
   render() {
-    this.element.innerHTML = `
-      <div class="${styles['message-page']}">
-        <div class="${styles['message-item']}">
-          <div class="${styles['message-body']}">
-            <span class="${styles['user-photo']}"></span>
-            <span class="${styles['user-name']}">Юрій Кабай</span>
-            <span class="${styles['user-message']}">Кабай каже: "Прііівєєт"</span>
-            <span class="${styles['message-time']}" >5:14:52 PM</span>
-          </div>
-        </div>
-        <div class="${styles['send-pannel']}">
-          <div class="${styles['send-form']}">
-            <span class="${styles['owner-photo']}"></span>
-            <form>
-              <textarea name="text-message" placeholder="Write a message..."></textarea>
-            </form>
-            <button class="${styles['button-send']}">SEND</button>
-            <span class="${styles['sender-photo']}"></span>
-          </div>
-        </div>
-      </div>
-    `;
+    this.element.appendChild(this.messagePageWrap);
+    this.messagePageWrap.appendChild(this.messageItemWrap);
+    this.messageItemWrap.appendChild(new MessageBody());
+    this.messagePageWrap.appendChild(this.sendPanelWrap);
+    this.sendPanelWrap.appendChild(new SendForm());
   }
 }
 

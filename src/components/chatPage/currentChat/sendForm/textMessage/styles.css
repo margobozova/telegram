@@ -1,0 +1,9 @@
+.form-wrap textarea[name="text-message"] {
+  height: 50px;
+  width: 85%;
+  border: none;
+  resize: none;
+}
+.form-wrap textarea[placeholder] {
+  font-size: 12px;
+}

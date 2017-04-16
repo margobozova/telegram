@@ -46,16 +46,16 @@
       		transition: color 100ms ease-out;
 		}
 
-.chat-item:hover {
-  background-color: rgb(100,144,177);
-}
+	.chat-item:hover {
+	  background-color: rgb(100,144,177);
+	}
 
-.chat-item:hover .message {
-  color: rgb(255,255,255);
-}
-.chat-item:hover .time {
-  color: rgb(255,255,255);
-}
-.chat-item:hover .name {
-  color: rgb(255,255,255);
-}
+	.chat-item:hover .message {
+	  color: rgb(255,255,255);
+	}
+	.chat-item:hover .time {
+	  color: rgb(255,255,255);
+	}
+	.chat-item:hover .name {
+	  color: rgb(255,255,255);
+	}

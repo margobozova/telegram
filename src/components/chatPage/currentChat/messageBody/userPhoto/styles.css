@@ -1,0 +1,11 @@
+.user-photo {
+  position: absolute;
+  left:-62px;
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  display: block;
+  background-image: url('/images/kabaii.jpg');
+  background-size: cover;
+  background-position: center;
+}
