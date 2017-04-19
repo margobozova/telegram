@@ -4,8 +4,8 @@ import User from '../models/user';
 
 export function createFixtures(req, res) {
 
-  User.remove({}).then(res => console.log(res)).catch(err => console.log(err));
-  Chat.remove({}).then(res => console.log(res)).catch(err => console.log(err));
+  User.remove({}).then(res => res).catch(err => err);
+  Chat.remove({}).then(res => res).catch(err => err);
 
   const users = [
     {
