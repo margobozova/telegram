@@ -3,6 +3,10 @@ import Chat from '../models/chat';
 import User from '../models/user';
 
 export function createFixtures(req, res) {
+
+  User.remove({}).then(res => console.log(res)).catch(err => console.log(err));
+  Chat.remove({}).then(res => console.log(res)).catch(err => console.log(err));
+
   const users = [
     {
       _id: mongoose.Types.ObjectId(),
@@ -26,16 +30,16 @@ export function createFixtures(req, res) {
       _id: mongoose.Types.ObjectId(),
       users: users.map(user => user._id),
       messages: [
-        { user: users[0]._id, text: 'Пріівєєєт!' },
-        { user: users[1]._id, text: 'Wooooof!!!' }
+        { user: users[0]._id, message: 'Пріівєєєт!', date: new Date() },
+        { user: users[1]._id, message: 'Wooooof!!!', date: new Date() }
       ]
     },
     {
       _id: mongoose.Types.ObjectId(),
       users: users.map(user => user._id),
       messages: [
-        { user: users[0]._id, text: 'Hello!' },
-        { user: users[2]._id, text: 'I am the night' }
+        { user: users[0]._id, message: 'Hello!', date: new Date() },
+        { user: users[2]._id, message: 'I am the night', date: new Date() }
       ]
     }
   ];

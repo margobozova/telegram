@@ -22,7 +22,7 @@ app.get('/setup', createFixtures);
 app.get('/chats', (req, res) => {
   Chat
     .find()
-    .select({ users: 1 })
+    .select({ users: 1, messages: { $slice: -1 } })
     .populate('users')
     .then(chats => {
       return res.send(chats);
@@ -47,7 +47,11 @@ app.put('/chats/:id', (req, res) => {
   Chat
     .findByIdAndUpdate(
       req.params.id,
-      { $push: { messages: { message: req.body.message, user: mongoose.Types.ObjectId(req.body.user) } } },
+      { $push: { messages: {
+        message: req.body.message,
+        user: mongoose.Types.ObjectId(req.body.user),
+        date: new Date()
+      } } },
       { new: true }
     )
     .then(chat => res.send(chat))
