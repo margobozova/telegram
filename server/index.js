@@ -1,6 +1,6 @@
 import Express from 'express';
 import http from 'http';
-import mongoose, { Types } from 'mongoose';
+import mongoose from 'mongoose';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import Chat from './models/chat';
@@ -20,7 +20,13 @@ app.use(bodyParser.json());
 app.get('/setup', createFixtures);
 
 app.get('/chats', (req, res) => {
-  Chat.find().select({ users: 1 }).then(data => res.send(data));
+  Chat
+    .find()
+    .select({ users: 1 })
+    .populate('users')
+    .then(chats => {
+      return res.send(chats);
+    });
 });
 
 app.get('/chats/:id', (req, res) => {
@@ -41,7 +47,7 @@ app.put('/chats/:id', (req, res) => {
   Chat
     .findByIdAndUpdate(
       req.params.id,
-      { $push: { messages: { message: req.body.message, user: Types.ObjectId(req.body.user) } } },
+      { $push: { messages: { message: req.body.message, user: mongoose.Types.ObjectId(req.body.user) } } },
       { new: true }
     )
     .then(chat => res.send(chat))
