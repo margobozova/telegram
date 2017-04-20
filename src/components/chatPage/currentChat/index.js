@@ -16,8 +16,10 @@ class CurrentChat {
     this.sendPanelWrap = document.createElement('div');
     this.sendPanelWrap.classList.add(styles['send-panel']);
     this.render();
+  }
 
-    return this.element;
+  getChat(chat) {
+    console.log(chat);
   }
   render() {
     this.element.appendChild(this.messagePageWrap);
