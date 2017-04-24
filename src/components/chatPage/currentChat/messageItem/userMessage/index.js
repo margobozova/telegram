@@ -1,16 +1,16 @@
 import styles from './styles.css';
 
 class UserMessage {
-  constructor() {
+  constructor({ messageText }) {
     this.element = document.createElement('span');
     this.element.classList.add(styles['user-message']);
-    this.message = 'Кабай каже: "Прііівєєт"';
+    this.messageText = messageText;
     this.render();
 
     return this.element;
   }
   render() {
-    this.element.innerHTML = this.message;
+    this.element.innerHTML = this.messageText;
   }
 }
 

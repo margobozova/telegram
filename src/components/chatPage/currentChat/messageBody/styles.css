@@ -1,7 +1,0 @@
-.message-body {
-  width: 380px;
-  min-height: 42px;
-  position: relative;
-  left:50%;
-  transform: translate(-50%,0);
-}

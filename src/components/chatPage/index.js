@@ -11,14 +11,12 @@ class ChatPage {
 
     return this.element;
   }
-  
   onChatSelect(chat) {
-    console.log(this.currentChat.getChat(chat));
+    this.currentChat.getChat(chat);
   }
-  
   render() {
     this.currentChat = new CurrentChat();
-    this.element.appendChild(new LeftMenu({onChatSelect: this.onChatSelect}));
+    this.element.appendChild(new LeftMenu({ onChatSelect: this.onChatSelect }));
     this.element.appendChild(this.currentChat.element);
   }
 }

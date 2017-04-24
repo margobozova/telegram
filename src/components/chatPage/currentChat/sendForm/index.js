@@ -5,7 +5,9 @@ import ButtonSend from './buttonSend';
 import SenderPhoto from './senderPhoto';
 
 class SendForm {
-  constructor() {
+  constructor({ messages, usersData }) {
+    this.messageData = messages;
+    this.usersData = usersData;
     this.element = document.createElement('div');
     this.element.classList.add(styles['send-form']);
 
@@ -13,6 +15,7 @@ class SendForm {
 
     return this.element;
   }
+
   render() {
     this.element.appendChild(new OwnerPhoto());
     this.element.appendChild(new TextMessage());

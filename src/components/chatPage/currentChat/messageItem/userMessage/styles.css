@@ -1,8 +1,7 @@
-.user-name {
+.user-message {
   position: absolute;
-  top: 3px;
+  bottom: 13px;
   font-family: sans-serif;
   font-size: 12px;
-  color: #3a6d99;
-  font-weight: 700;
+  color: #000000;
 }

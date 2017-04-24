@@ -1,0 +1,8 @@
+.message-item {
+  width: 100%;
+  padding: 10px 160px;
+  min-height: 62px;
+  position: relative;
+  left:50%;
+  transform: translate(-50%,0);
+}

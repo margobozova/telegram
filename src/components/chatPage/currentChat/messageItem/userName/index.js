@@ -1,7 +1,8 @@
 import styles from './styles.css';
 
 class UserName {
-  constructor() {
+  constructor({ name }) {
+    this.name = name;
     this.element = document.createElement('span');
     this.element.classList.add(styles['user-name']);
     this.render();
@@ -9,7 +10,7 @@ class UserName {
     return this.element;
   }
   render() {
-    this.element.innerHTML = 'Юрій Кабай';
+    this.element.innerHTML = this.name;
   }
 }
 

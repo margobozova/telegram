@@ -40,9 +40,9 @@ config.merge({
               ]
             }
           },
-          // {
-          //   loader: 'eslint-loader'
-          // }
+           {
+             loader: 'eslint-loader'
+           }
         ]
       },
       {

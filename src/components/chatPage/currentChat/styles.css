@@ -9,11 +9,6 @@
     width:100%;
     overflow: auto;
   }
-    .message-item {
-      width:100%;
-      position: relative;
-      padding:8px;
-    }
   .send-panel {
     height: 170px;
     position: absolute;

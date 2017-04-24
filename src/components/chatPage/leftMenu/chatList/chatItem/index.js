@@ -1,7 +1,7 @@
 import styles from './styles.css';
 
 class ChatItem {
-  constructor({chat, onChatSelect}) {
+  constructor({ chat, onChatSelect }) {
     this.onChatSelect = onChatSelect;
     this.chat = chat;
     this.cover = '/images/kabaii.jpg';
