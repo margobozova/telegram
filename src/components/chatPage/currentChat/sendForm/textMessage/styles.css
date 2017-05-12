@@ -7,3 +7,14 @@
 .form-wrap textarea[placeholder] {
   font-size: 12px;
 }
+.form-wrap button[type="submit"] {
+  border: none;
+  background-color: transparent;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: sans-serif;
+  color: #499dd9;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}

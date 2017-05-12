@@ -44,6 +44,11 @@ app.get('/chats/:id', (req, res) => {
 });
 
 app.put('/chats/:id', (req, res) => {
+
+  console.log('--- Request ---');
+  console.log('Body', req.body);
+  console.log('--- End ---');
+
   Chat
     .findByIdAndUpdate(
       req.params.id,

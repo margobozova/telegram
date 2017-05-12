@@ -1,12 +1,13 @@
 import styles from './styles.css';
 import OwnerPhoto from './ownerPhoto';
 import TextMessage from './textMessage';
-import ButtonSend from './buttonSend';
 import SenderPhoto from './senderPhoto';
 
 class SendForm {
-  constructor({ messages, usersData }) {
-    this.messageData = messages;
+  constructor({ usersData, chatId, messages, getChat }) {
+    this.getChat = getChat;
+    this.messages = messages;
+    this.chatId = chatId;
     this.usersData = usersData;
     this.element = document.createElement('div');
     this.element.classList.add(styles['send-form']);
@@ -17,10 +18,11 @@ class SendForm {
   }
 
   render() {
-    this.element.appendChild(new OwnerPhoto());
-    this.element.appendChild(new TextMessage());
-    this.element.appendChild(new ButtonSend());
-    this.element.appendChild(new SenderPhoto());
+    this.element.appendChild(new OwnerPhoto({ usersData: this.usersData }));
+    this.element.appendChild(new TextMessage({ usersData: this.usersData,
+      chatId: this.chatId,
+      getChat: this.getChat }));
+    this.element.appendChild(new SenderPhoto({ usersData: this.usersData }));
   }
 }
 

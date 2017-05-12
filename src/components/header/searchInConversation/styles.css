@@ -1,0 +1,13 @@
+.search-in-conversation {
+  display: block;
+  float: left;
+  width: 55px;
+  height: 100%;
+  background-image: url(/images/ic_search_white.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: background-color 200ms ease-out;
+}
+  .search-in-conversation:hover {
+    background-color: #497799;
+  }

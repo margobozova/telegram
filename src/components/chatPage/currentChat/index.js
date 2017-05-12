@@ -37,11 +37,11 @@ class CurrentChat {
     this.messages.forEach(messageData => (
       this.messagePageWrap.appendChild(new MessageItem({ messageData, usersData: this.usersData }))
     ));
-
     this.messagePageWrap.appendChild(this.sendPanelWrap);
     this.sendPanelWrap.innerHTML = '';
-    this.sendPanelWrap.appendChild(new SendForm({ messages: this.messages,
-      usersData: this.usersData }));
+    this.sendPanelWrap.appendChild(new SendForm({ usersData: this.usersData,
+      chatId: this.chat._id,
+      getChat: this.getChat }));
   }
 }
 

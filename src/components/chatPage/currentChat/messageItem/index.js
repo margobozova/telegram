@@ -16,7 +16,7 @@ class MessageItem {
   }
   render() {
     this.currentUser = this.usersData.filter(element => (element._id === this.messageData.user));
-    this.messageText = this.messageData.text;
+    this.messageText = this.messageData.message;
     this.image = this.currentUser[0].image;
     this.name = this.currentUser[0].name;
     this.element.appendChild(new UserPhoto({ image: this.image }));

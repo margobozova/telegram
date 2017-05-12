@@ -1,0 +1,41 @@
+.authorisation-wrap {
+  height: 400px;
+  width: 500px;
+  position: absolute;
+  top:50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border-radius: 10%;
+  box-shadow: 3px 3px 3px rgba(0,0,0,0.2);
+}
+  .form-wrap input[name="name"]{
+    width: 400px;
+    height: 50px;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%,0);
+    top: 20%;
+  }
+  .form-wrap input[name="password"]{
+    width: 400px;
+    height: 50px;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%,0);
+    top: 40%;
+  }
+  .form-wrap button {
+    position: absolute;
+    width: 400px;
+    height: 70px;
+    background-color: steelblue;
+    border-radius: 20px;
+    top: 60%;
+    left:50%;
+    transform: translate(-50%,0);
+    font-family: sans-serif;
+    color: white;
+    font-size: 20px;
+  }
+
