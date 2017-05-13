@@ -11,16 +11,19 @@ export function createFixtures(req, res) {
     {
       _id: mongoose.Types.ObjectId(),
       name: 'Root',
+      password: '111',
       image: 'root.jpeg'
     },
     {
       _id: mongoose.Types.ObjectId(),
       name: 'Wolverine',
+      password: '222',
       image: 'wolverine.jpeg'
     },
     {
       _id: mongoose.Types.ObjectId(),
       name: 'Batman',
+      password: '333',
       image: 'batman.png'
     }
   ];

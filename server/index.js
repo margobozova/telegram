@@ -3,10 +3,12 @@ import http from 'http';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import bodyParser from 'body-parser';
+import jwt from 'jsonwebtoken';
 import Chat from './models/chat';
 import User from './models/user';
 
 import { createFixtures } from './config';
+const secret = 'BruceWayneIsBatman';
 
 const app = Express();
 const httpServer = http.Server(app);
@@ -45,10 +47,6 @@ app.get('/chats/:id', (req, res) => {
 
 app.put('/chats/:id', (req, res) => {
 
-  console.log('--- Request ---');
-  console.log('Body', req.body);
-  console.log('--- End ---');
-
   Chat
     .findByIdAndUpdate(
       req.params.id,
@@ -61,6 +59,27 @@ app.put('/chats/:id', (req, res) => {
     )
     .then(chat => res.send(chat))
     .catch(err => res.send(500, err));
+});
+
+app.post('/login', (req, res) => {
+  if (!req.body.user) { return res.send(403); }
+
+  User
+    .findOne({ name: req.body.user.name })
+    .then((user) => {
+      if (user) {
+        if (user.password === req.body.user.password) { return user; }
+        throw new Error(403);
+      }
+
+      const newUser = new User(req.body.user);
+      return newUser.save();
+    })
+    .then((user) => {
+      const token = jwt.sign(user, secret);
+      res.send({ token });
+    })
+    .catch(err => res.send(err));
 });
 
 httpServer.listen(3000, () => console.log('Server listening on port 3000'));

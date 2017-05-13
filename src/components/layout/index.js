@@ -18,6 +18,7 @@ class Layout {
     this.container.appendChild(new Header());
     this.container.appendChild(new ChatPage());
   }
+
   authorisation() {
     this.container.appendChild(new Authorisation());
   }
