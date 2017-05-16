@@ -22,43 +22,67 @@ app.use(bodyParser.json());
 app.get('/setup', createFixtures);
 
 app.get('/chats', (req, res) => {
-  Chat
+  const token = req.headers['x-access-token'];
+  if (!token) { return res.send(403); }
+
+  jwt.verify(token, secret, (err, user) => {
+    Chat
+      .find({ users: mongoose.Types.ObjectId(user._id) })
+      .select({ users: 1, messages: { $slice: -1 } })
+      .populate('users')
+      .then(chats => {
+        return res.send(chats);
+      });
+  });
+});
+
+app.get('/users', (req, res) => {
+  User
     .find()
-    .select({ users: 1, messages: { $slice: -1 } })
-    .populate('users')
-    .then(chats => {
-      return res.send(chats);
-    });
+    .then(users => res.send(users));
 });
 
 app.get('/chats/:id', (req, res) => {
-  Chat
-    .findById(req.params.id)
-    .then(chat => (
-      Promise
-        .all(chat.users.map(userId => User.findById(userId)))
-        .then((users) => {
-          chat.users = users;
-          return res.send(chat);
-        })
-        .catch(err => console.log('Err', err))
-    ));
+  const token = req.headers['x-access-token'];
+  if (!token) { return res.send(403); }
+
+  jwt.verify(token, secret, (err) => {
+    if (err) { res.send(403); }
+
+    Chat
+      .findById(req.params.id)
+      .then(chat => (
+        Promise
+          .all(chat.users.map(userId => User.findById(userId)))
+          .then((users) => {
+            chat.users = users;
+            return res.send(chat);
+          })
+          .catch(err => console.log('Err', err))
+      ));
+  });
 });
 
 app.put('/chats/:id', (req, res) => {
+  const token = req.headers['x-access-token'];
+  if (!token) { return res.send(403); }
 
-  Chat
-    .findByIdAndUpdate(
-      req.params.id,
-      { $push: { messages: {
-        message: req.body.message,
-        user: mongoose.Types.ObjectId(req.body.user),
-        date: new Date()
-      } } },
-      { new: true }
-    )
-    .then(chat => res.send(chat))
-    .catch(err => res.send(500, err));
+  jwt.verify(token, secret, (err) => {
+    if (err) { res.send(403); }
+
+    Chat
+      .findByIdAndUpdate(
+        req.params.id,
+        { $push: { messages: {
+          message: req.body.message,
+          user: mongoose.Types.ObjectId(req.body.user),
+          date: new Date()
+        } } },
+        { new: true }
+      )
+      .then(chat => res.send(chat))
+      .catch(err => res.send(500, err));
+  });
 });
 
 app.post('/login', (req, res) => {
@@ -76,7 +100,7 @@ app.post('/login', (req, res) => {
       return newUser.save();
     })
     .then((user) => {
-      const token = jwt.sign(user, secret);
+      const token = jwt.sign(user.toObject(), secret);
       res.send({ token });
     })
     .catch(err => res.send(err));

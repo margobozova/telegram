@@ -8,6 +8,7 @@ class ChatList {
     this.element.classList.add(styles['chat-list']);
     this.xhr = new XMLHttpRequest();
     this.xhr.open('GET', 'http://localhost:3000/chats');
+    this.xhr.setRequestHeader('x-access-token', localStorage.getItem('token'));
 
     this.xhr.send();
 

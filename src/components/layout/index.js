@@ -8,19 +8,28 @@ class Layout {
   constructor({ container }) {
     this.container = container;
     this.container.classList.add(styles.app);
-    this.authorisationCount = false;
-    if (this.authorisationCount) { this.render(); } else (this.authorisation());
 
+    const token = localStorage.getItem('token');
+    this.isAuthorized = !!token;
+
+    this.render();
     return this.container;
   }
 
-  render() {
-    this.container.appendChild(new Header());
-    this.container.appendChild(new ChatPage());
-  }
+  authorize = () => {
+    this.isAuthorized = true;
+    this.render();
+  };
 
-  authorisation() {
-    this.container.appendChild(new Authorisation());
+  render() {
+    this.container.innerHTML = '';
+
+    if (this.isAuthorized) {
+      this.container.appendChild(new Header());
+      this.container.appendChild(new ChatPage());
+    } else {
+      this.container.appendChild(new Authorisation({ authorize: this.authorize }));
+    }
   }
 }
 

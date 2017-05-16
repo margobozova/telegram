@@ -9,9 +9,9 @@ export function createFixtures(req, res) {
 
   const users = [
     {
-      _id: mongoose.Types.ObjectId(),
-      name: 'Root',
-      password: '111',
+      _id: mongoose.Types.ObjectId('591770c8a442ec5e6dbe03fe'),
+      name: 'root',
+      password: 'root',
       image: 'root.jpeg'
     },
     {

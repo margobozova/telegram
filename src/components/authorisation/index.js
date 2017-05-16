@@ -1,7 +1,8 @@
 import styles from './styles.css';
 
 class Authorisation {
-  constructor() {
+  constructor({ authorize }) {
+    this.authorize = authorize;
     this.element = document.createElement('div');
     this.element.classList.add(styles['authorisation-wrap']);
     this.formAutorithation = document.createElement('form');
@@ -29,7 +30,14 @@ class Authorisation {
       body: JSON.stringify({ user: { name, password } })
     })
       .then(response => response.json())
-      .then(data => localStorage.setItem('token', data.token));
+      .then((data) => {
+        if (!data.token) { throw new Error(403); }
+
+        localStorage.setItem('token', data.token);
+        return data.token;
+      })
+      .then(this.authorize)
+      .catch(err => console.error(err));
 
     return true;
   }
