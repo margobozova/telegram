@@ -6,9 +6,12 @@ class ChatList {
     this.onChatSelect = onChatSelect;
     this.element = document.createElement('div');
     this.element.classList.add(styles['chat-list']);
+
     this.xhr = new XMLHttpRequest();
     this.xhr.open('GET', 'http://localhost:3000/chats');
-    this.xhr.setRequestHeader('x-access-token', localStorage.getItem('token'));
+
+    const user = localStorage.getItem('user');
+    if (user) { this.xhr.setRequestHeader('x-access-token', JSON.parse(user).token); }
 
     this.xhr.send();
 

@@ -101,7 +101,10 @@ app.post('/login', (req, res) => {
     })
     .then((user) => {
       const token = jwt.sign(user.toObject(), secret);
-      res.send({ token });
+      res.send({
+        name: user.name,
+        token
+      });
     })
     .catch(err => res.send(err));
 });
