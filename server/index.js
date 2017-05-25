@@ -24,7 +24,6 @@ app.get('/setup', createFixtures);
 app.get('/chats', (req, res) => {
   const token = req.headers['x-access-token'];
   if (!token) { return res.send(403); }
-
   jwt.verify(token, secret, (err, user) => {
     Chat
       .find({ users: mongoose.Types.ObjectId(user._id) })

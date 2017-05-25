@@ -22,7 +22,7 @@ class MessageItem {
     this.element.appendChild(new UserPhoto({ image: this.image }));
     this.element.appendChild(new UserName({ name: this.name }));
     this.element.appendChild(new UserMessage({ messageText: this.messageText }));
-    this.element.appendChild(new MessageTime());
+    this.element.appendChild(new MessageTime({ messageData: this.messageData }));
   }
 }
 

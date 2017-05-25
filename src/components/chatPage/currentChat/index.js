@@ -18,16 +18,22 @@ class CurrentChat {
 
   getChat(chat) {
     this.chat = chat;
-    this.xhr = new XMLHttpRequest();
-    this.xhr.open('GET', `http://localhost:3000/chats/${this.chat._id}`);
-    this.xhr.send();
-    this.xhr.onreadystatechange = () => {
-      if (this.xhr.readyState !== 4) { return false; }
-      if (this.xhr.status !== 200) { return console.error(this.xhr.status); }
-      this.chatData = JSON.parse(this.xhr.response);
-
-      return this.render();
-    };
+    fetch(`//localhost:3000/chats/${this.chat._id}`, {
+      method: 'GET',
+      headers: new Headers({
+        'x-access-token': localStorage.getItem('token'),
+      })
+    })
+      .then(response => response.json())
+      .then((data) => {
+        if (!data) { throw new Error(404); }
+        return data;
+      })
+      .then((chatData) => {
+        this.chatData = chatData;
+        return this.render();
+      })
+      .catch(err => console.error(err));
   }
   render() {
     this.element.appendChild(this.messagePageWrap);

@@ -1,0 +1,13 @@
+.contact-list-button {
+  width: 50%;
+  height: 50px;
+  left: 0;
+  position: absolute;
+  bottom: 0;
+  border: none;
+  background-color: transparent;
+}
+  .contact-list-button i {
+    font-size: 40px;
+    color: rgba(130,130,130, 0.6);
+  }

@@ -1,0 +1,13 @@
+.chat-list-button {
+  width: 50%;
+  height: 50px;
+  right: 0;
+  position: absolute;
+  bottom: 0;
+  border: none;
+  background-color: transparent;
+}
+  .chat-list-button i {
+    font-size: 40px;
+    color: rgba(130,130,130, 0.6);
+  }

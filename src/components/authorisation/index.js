@@ -25,15 +25,17 @@ class Authorisation {
     fetch('//localhost:3000/login', {
       method: 'POST',
       headers: new Headers({
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       }),
       body: JSON.stringify({ user: { name, password } })
     })
       .then(response => response.json())
       .then((data) => {
         if (!data.token) { throw new Error(403); }
-
+        this.data = data;
+        console.log(this.data);
         localStorage.setItem('token', data.token);
+
         return data.token;
       })
       .then(this.authorize)

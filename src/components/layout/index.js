@@ -8,7 +8,6 @@ class Layout {
   constructor({ container }) {
     this.container = container;
     this.container.classList.add(styles.app);
-
     const token = localStorage.getItem('token');
     this.isAuthorized = !!token;
 

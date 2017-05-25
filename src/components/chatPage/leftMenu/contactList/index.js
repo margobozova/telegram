@@ -1,14 +1,13 @@
 import styles from './styles.css';
-import ChatItem from './chatItem';
+import ContactItem from './contactItem';
 
-class ChatList {
-  constructor({ onChatSelect, onClick }) {
+class ContactList {
+  constructor({ onClick }) {
     this.onClick = onClick;
-    this.onChatSelect = onChatSelect;
     this.element = document.createElement('div');
-    this.element.classList.add(styles['chat-list']);
+    this.element.classList.add(styles['contact-list']);
 
-    fetch('//localhost:3000/chats', {
+    fetch('//localhost:3000/users', {
       method: 'GET',
       headers: new Headers({
         'x-access-token': localStorage.getItem('token'),
@@ -19,8 +18,8 @@ class ChatList {
         if (!data) { throw new Error(404); }
         return data;
       })
-      .then((chats) => {
-        this.chats = chats;
+      .then((users) => {
+        this.users = users;
         return this.render();
       })
       .catch(err => console.error(err));
@@ -30,10 +29,10 @@ class ChatList {
 
   render() {
     this.element.innerHTML = '';
-    this.chats.forEach(chat => (
-      this.element.appendChild(new ChatItem({ chat, onChatSelect: this.onChatSelect }))
+    this.users.forEach(user => (
+      this.element.appendChild(new ContactItem({ user }))
     ));
   }
 }
 
-export default ChatList;
+export default ContactList;

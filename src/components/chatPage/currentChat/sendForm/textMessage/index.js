@@ -16,21 +16,29 @@ class TextMessage {
   putMessage(ev) {
     ev.preventDefault();
     const messageValue = ev.target.children['text-message'].value;
-    const root = this.usersData.find(element => element.name === 'Root');
-    const body = JSON.stringify({ message: messageValue, user: root._id });
-    this.xhr = new XMLHttpRequest();
-    this.xhr.open('PUT', `http://localhost:3000/chats/${this.chatId}`);
-    this.xhr.setRequestHeader('Content-Type', 'application/json');
-    this.xhr.send(body);
+    const root = this.usersData.find(element => element.name === 'root');
+  //  const body = JSON.stringify({ message: messageValue, user: root._id });
+    fetch(`//localhost:3000/chats/${this.chatId}`, {
+      method: 'PUT',
+      headers: new Headers({
+        'Content-Type': 'application/json',
+        'x-access-token': localStorage.getItem('token')
+      }),
+      body: JSON.stringify({ message: messageValue, user: root._id })
+    })
+      .then(response => response.json())
+      .then((data) => {
+        if (!data) { throw new Error(404); }
 
-    this.xhr.onreadystatechange = () => {
-      if (this.xhr.readyState !== 4) { return false; }
-      if (this.xhr.status !== 200) { return console.error(this.xhr.status); }
-      this.chat = JSON.parse(this.xhr.response);
-      this.getChat(this.chat);
+        return data;
+      })
+      .then((chat) => {
+        this.chat = chat;
+        this.getChat(this.chat);
 
-      return true;
-    };
+        return true;
+      })
+      .catch(err => console.error(err));
   }
 
   render() {
