@@ -8,10 +8,12 @@ class ChatList {
     this.element = document.createElement('div');
     this.element.classList.add(styles['chat-list']);
 
+    const user = localStorage.getItem('user');
+
     fetch('//localhost:3000/chats', {
       method: 'GET',
       headers: new Headers({
-        'x-access-token': localStorage.getItem('token'),
+        'x-access-token': JSON.parse(user).token
       })
     })
       .then(response => response.json())

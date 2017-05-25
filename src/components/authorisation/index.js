@@ -30,13 +30,11 @@ class Authorisation {
       body: JSON.stringify({ user: { name, password } })
     })
       .then(response => response.json())
-      .then((data) => {
-        if (!data.token) { throw new Error(403); }
-        this.data = data;
-        console.log(this.data);
-        localStorage.setItem('token', data.token);
+      .then((user) => {
+        if (!user || !user.token) { throw new Error(403); }
 
-        return data.token;
+        localStorage.setItem('user', JSON.stringify(user));
+        return user;
       })
       .then(this.authorize)
       .catch(err => console.error(err));
