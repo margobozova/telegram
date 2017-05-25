@@ -32,7 +32,8 @@ class Authorisation {
       .then(response => response.json())
       .then((user) => {
         if (!user || !user.token) { throw new Error(403); }
-
+        this.user = user;
+        console.log(this.user);
         localStorage.setItem('user', JSON.stringify(user));
         return user;
       })

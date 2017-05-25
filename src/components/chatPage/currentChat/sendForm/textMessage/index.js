@@ -17,12 +17,13 @@ class TextMessage {
     ev.preventDefault();
     const messageValue = ev.target.children['text-message'].value;
     const root = this.usersData.find(element => element.name === 'root');
-  //  const body = JSON.stringify({ message: messageValue, user: root._id });
+    const user = localStorage.getItem('user');
+
     fetch(`//localhost:3000/chats/${this.chatId}`, {
       method: 'PUT',
       headers: new Headers({
         'Content-Type': 'application/json',
-        'x-access-token': localStorage.getItem('token')
+        'x-access-token': JSON.parse(user).token
       }),
       body: JSON.stringify({ message: messageValue, user: root._id })
     })

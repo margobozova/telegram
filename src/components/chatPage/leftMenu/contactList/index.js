@@ -3,6 +3,7 @@ import ContactItem from './contactItem';
 
 class ContactList {
   constructor({ onClick }) {
+    const user = localStorage.getItem('user');
     this.onClick = onClick;
     this.element = document.createElement('div');
     this.element.classList.add(styles['contact-list']);
@@ -10,7 +11,7 @@ class ContactList {
     fetch('//localhost:3000/users', {
       method: 'GET',
       headers: new Headers({
-        'x-access-token': localStorage.getItem('token'),
+        'x-access-token': JSON.parse(user).token
       })
     })
       .then(response => response.json())

@@ -18,10 +18,11 @@ class CurrentChat {
 
   getChat(chat) {
     this.chat = chat;
+    const user = localStorage.getItem('user');
     fetch(`//localhost:3000/chats/${this.chat._id}`, {
       method: 'GET',
       headers: new Headers({
-        'x-access-token': localStorage.getItem('token'),
+        'x-access-token': JSON.parse(user).token,
       })
     })
       .then(response => response.json())
