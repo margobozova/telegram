@@ -32,13 +32,17 @@ class Authorisation {
       .then(response => response.json())
       .then((user) => {
         if (!user || !user.token) { throw new Error(403); }
-        this.user = user;
-        console.log(this.user);
         localStorage.setItem('user', JSON.stringify(user));
         return user;
       })
       .then(this.authorize)
-      .catch(err => console.error(err));
+      .catch((err) => {
+        console.error(err);
+        this.errorNotification = document.createElement('span');
+        this.errorNotification.classList.add(styles['error-password']);
+        this.errorNotification.innerHTML = 'wrong password';
+        return this.formAutorithation.appendChild(this.errorNotification);
+      });
 
     return true;
   }

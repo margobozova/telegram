@@ -4,14 +4,14 @@ class HeaderContactStatus {
   constructor() {
     this.element = document.createElement('a');
     this.element.classList.add(styles['header-contact-status']);
+    this.userName = JSON.parse(localStorage.getItem('user')).name;
     this.render();
 
     return this.element;
   }
   render() {
     this.element.innerHTML = `
-       <span class="${styles['name-conversation']}">Юра</span>
-       <span class="${styles['status-conversation']}">last seen 28 minutes ago</span>
+       <span class="${styles['name-conversation']}">${this.userName}</span>
     `;
   }
 }

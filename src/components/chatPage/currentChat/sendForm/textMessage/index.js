@@ -16,8 +16,9 @@ class TextMessage {
   putMessage(ev) {
     ev.preventDefault();
     const messageValue = ev.target.children['text-message'].value;
-    const root = this.usersData.find(element => element.name === 'root');
     const user = localStorage.getItem('user');
+    this.userName = JSON.parse(localStorage.getItem('user')).name;
+    const owner = this.usersData.find(element => element.name === this.userName);
 
     fetch(`//localhost:3000/chats/${this.chatId}`, {
       method: 'PUT',
@@ -25,7 +26,7 @@ class TextMessage {
         'Content-Type': 'application/json',
         'x-access-token': JSON.parse(user).token
       }),
-      body: JSON.stringify({ message: messageValue, user: root._id })
+      body: JSON.stringify({ message: messageValue, user: owner._id })
     })
       .then(response => response.json())
       .then((data) => {
