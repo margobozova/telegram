@@ -46,9 +46,13 @@ class CurrentChat {
     ));
     this.messagePageWrap.appendChild(this.sendPanelWrap);
     this.sendPanelWrap.innerHTML = '';
-    this.sendPanelWrap.appendChild(new SendForm({ usersData: this.usersData,
+    this.sendPanelWrap.appendChild(new SendForm({
+      usersData: this.usersData,
       chatId: this.chat._id,
-      getChat: this.getChat }));
+      getChat: this.getChat
+    }));
+
+    this.messagePageWrap.scrollTop = this.messagePageWrap.scrollHeight;
   }
 }
 

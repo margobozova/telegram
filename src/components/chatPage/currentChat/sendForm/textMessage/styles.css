@@ -1,10 +1,13 @@
-.form-wrap textarea[name="text-message"] {
+.form-wrap input[name="text-message"] {
   height: 50px;
   width: 85%;
   border: none;
   resize: none;
 }
-.form-wrap textarea[placeholder] {
+.form-wrap input:focus {
+  outline: none;
+}
+.form-wrap input[placeholder] {
   font-size: 12px;
 }
 .form-wrap button[type="submit"] {

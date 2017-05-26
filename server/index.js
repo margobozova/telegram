@@ -29,16 +29,19 @@ app.get('/chats', (req, res) => {
       .find({ users: mongoose.Types.ObjectId(user._id) })
       .select({ users: 1, messages: { $slice: -1 } })
       .populate('users')
-      .then(chats => {
-        return res.send(chats);
-      });
+      .then(chats => res.send(chats));
   });
 });
 
 app.get('/users', (req, res) => {
-  User
-    .find()
-    .then(users => res.send(users));
+  const token = req.headers['x-access-token'];
+  if (!token) { return res.send(403); }
+
+  jwt.verify(token, secret, (err, user) => {
+    User
+      .find({ _id: { $ne: mongoose.Types.ObjectId(user._id) } })
+      .then(users => res.send(users));
+  });
 });
 
 app.get('/chats/:id', (req, res) => {
@@ -102,10 +105,45 @@ app.post('/login', (req, res) => {
       const token = jwt.sign(user.toObject(), secret);
       res.send({
         name: user.name,
+        _id: user._id,
         token
       });
     })
     .catch(err => res.send(err));
+});
+
+app.post('/chats/connect-contact', (req, res) => {
+  const token = req.headers['x-access-token'];
+  if (!token) { return res.send(403); }
+
+  jwt.verify(token, secret, (err, user) => {
+    if (err) { res.send(403); }
+
+    Chat
+      .findOne({
+        users: {
+          $size: 2,
+          $all: [
+            mongoose.Types.ObjectId(user._id),
+            mongoose.Types.ObjectId(req.body.contactId)
+          ]
+        }
+      })
+      .then((chat) => {
+        if (chat) { return chat; }
+
+        const newChat = new Chat({
+          users: [
+            mongoose.Types.ObjectId(user._id),
+            mongoose.Types.ObjectId(req.body.contactId)
+          ],
+          messages: []
+        });
+
+        return newChat.save();
+      })
+      .then(chat => res.send({ _id: chat._id }));
+  });
 });
 
 httpServer.listen(3000, () => console.log('Server listening on port 3000'));

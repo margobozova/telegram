@@ -6,6 +6,10 @@
   bottom: 0;
   border: none;
   background-color: transparent;
+  cursor: pointer;
+}
+.contact-list-button:focus {
+  outline: none;
 }
   .contact-list-button i {
     font-size: 40px;

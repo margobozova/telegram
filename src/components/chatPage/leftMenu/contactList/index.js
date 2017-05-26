@@ -2,9 +2,9 @@ import styles from './styles.css';
 import ContactItem from './contactItem';
 
 class ContactList {
-  constructor({ onClick }) {
+  constructor({ onContactClick }) {
     const user = localStorage.getItem('user');
-    this.onClick = onClick;
+    this.onContactClick = onContactClick;
     this.element = document.createElement('div');
     this.element.classList.add(styles['contact-list']);
 
@@ -31,7 +31,7 @@ class ContactList {
   render() {
     this.element.innerHTML = '';
     this.users.forEach(user => (
-      this.element.appendChild(new ContactItem({ user }))
+      this.element.appendChild(new ContactItem({ user, onContactClick: this.onContactClick }))
     ));
   }
 }

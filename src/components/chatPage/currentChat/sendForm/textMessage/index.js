@@ -45,7 +45,7 @@ class TextMessage {
 
   render() {
     this.element.innerHTML = `
-      <textarea name="text-message" placeholder="Write a message..."></textarea>
+      <input name="text-message" placeholder="Write a message..." />
       <button type="submit">SEND</button>
     `;
   }

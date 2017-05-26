@@ -1,12 +1,13 @@
 import styles from './styles.css';
 
 class ContactItem {
-  constructor({ user }) {
+  constructor({ user, onContactClick }) {
     this.user = user;
     this.cover = this.user.image;
     this.name = this.user.name;
 
     this.element = document.createElement('div');
+    this.element.addEventListener('click', () => onContactClick(this.user._id));
     this.element.classList.add(styles['contact-item']);
 
     this.render();

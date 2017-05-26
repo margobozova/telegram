@@ -5,7 +5,7 @@ class ChatListButton {
     this.onClick = onClick;
     this.element = document.createElement('button');
     this.element.classList.add(styles['chat-list-button']);
-    this.element.addEventListener('click', this.onClick);
+    this.element.addEventListener('click', () => this.onClick(true));
     this.render();
 
     return this.element;

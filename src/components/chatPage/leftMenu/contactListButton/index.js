@@ -6,7 +6,7 @@ class ContactListButton {
     this.element = document.createElement('button');
     this.element.classList.add(styles['contact-list-button']);
     this.render();
-    this.element.addEventListener('click', this.onClick);
+    this.element.addEventListener('click', () => this.onClick(false));
 
     return this.element;
   }

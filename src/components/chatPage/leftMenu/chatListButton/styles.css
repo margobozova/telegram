@@ -6,6 +6,10 @@
   bottom: 0;
   border: none;
   background-color: transparent;
+  cursor: pointer;
+}
+.chat-list-button:focus {
+  outline: none;
 }
   .chat-list-button i {
     font-size: 40px;

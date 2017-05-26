@@ -11,9 +11,11 @@ class ChatPage {
 
     return this.element;
   }
+
   onChatSelect(chat) {
     this.currentChat.getChat(chat);
   }
+
   render() {
     this.currentChat = new CurrentChat();
     this.element.appendChild(new LeftMenu({ onChatSelect: this.onChatSelect }));
